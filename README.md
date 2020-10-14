@@ -1,0 +1,2 @@
+# hackintosh
+Hackintosh related files
