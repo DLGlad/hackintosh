@@ -59424,7 +59424,7 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
 
     Scope (_SB.PCI0.I2C1)
     {
-        Device (ETPD) // Renamed from ETPD
+        Device (ETPD)
         {
             Name (_ADR, One)  // _ADR: Address
             Name (ETPH, Package (0x01)
@@ -59533,7 +59533,25 @@ DefinitionBlock ("", "DSDT", 2, "_ASUS_", "Notebook", 0x01072009)
                         0x0000006D,
                     }
                 })
-                Return (SBFI) /* \_SB_.PCI0.I2C1.ETPD._CRS.SBFI */
+                Name (SBFB, ResourceTemplate ()
+                {
+                    I2cSerialBusV2 (0x0015, ControllerInitiated, 0x00061A80,
+                        AddressingMode7Bit, "\\_SB.PCI0.I2C1",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                })
+                Name (SBFG, ResourceTemplate ()
+                {
+                    GpioInt (Level, ActiveLow, ExclusiveAndWake, PullDefault, 0x0000,
+                        "\\_SB.PCI0.GPI0", 0x00, ResourceConsumer, ,
+                    )
+                    {   
+                        0x6D
+                    }
+                })
+
+                // Return (SBFI) /* \_SB_.PCI0.I2C1.ETPD._CRS.SBFI */
+                Return (ConcatenateResTemplate (SBFB, SBFG)) /* \_SB_.PCI0.I2C1.ETPD._CRS.SBFB */
             }
         }
     }
