@@ -1,0 +1,50 @@
+#Maintained by: DLGla
+#battery_ASUS_UX434FLC.txt
+
+# based on battery_ASUS-G75vw.txt by Rehabman
+# modified by DLGla
+
+into device label EC0 code_regex B0VL,\s+16, replace_matched begin B0V0,8,B0V1,8, end;
+into device label EC0 code_regex B0RC,\s+16, replace_matched begin B0R0,8,B0R1,8, end;
+into device label EC0 code_regex B0FC,\s+16, replace_matched begin B0F0,8,B0F1,8, end;
+into device label EC0 code_regex B0MD,\s+16, replace_matched begin B0M0,8,B0M1,8, end;
+into device label EC0 code_regex B0ST,\s+16, replace_matched begin B0S0,8,B0S1,8, end;
+into device label EC0 code_regex B0CC,\s+16, replace_matched begin B0C0,8,B0C1,8, end;
+into device label EC0 code_regex B0DC,\s+16, replace_matched begin B0D0,8,B0D1,8, end;
+into device label EC0 code_regex B0DV,\s+16, replace_matched begin B0D2,8,B0D3,8, end;
+
+into device label EC0 code_regex B1VL,\s+16, replace_matched begin B1V0,8,B1V1,8, end;
+into device label EC0 code_regex B1RC,\s+16, replace_matched begin B1R0,8,B1R1,8, end;
+into device label EC0 code_regex B1FC,\s+16, replace_matched begin B1F0,8,B1F1,8, end;
+into device label EC0 code_regex B1MD,\s+16, replace_matched begin B1M0,8,B1M1,8, end;
+into device label EC0 code_regex B1ST,\s+16, replace_matched begin B1S0,8,B1S1,8, end;
+into device label EC0 code_regex B1CC,\s+16, replace_matched begin B1C0,8,B1C1,8, end;
+into device label EC0 code_regex B1DC,\s+16, replace_matched begin B1D0,8,B1D1,8, end;
+into device label EC0 code_regex B1DV,\s+16, replace_matched begin B1D2,8,B1D3,8, end;
+
+#Create B1B2 Method
+into method label B1B2 remove_entry;
+into definitionblock code_regex . insert
+begin
+Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }\n
+end;
+
+
+into_all method code_regex B0VL replaceall_matched begin B1B2(B0V0,B0V1) end;
+into_all method code_regex B0RC replaceall_matched begin B1B2(B0R0,B0R1) end;
+into_all method code_regex B0FC replaceall_matched begin B1B2(B0F0,B0F1) end;
+into_all method code_regex B0MD replaceall_matched begin B1B2(B0M0,B0M1) end;
+into_all method code_regex B0ST replaceall_matched begin B1B2(B0S0,B0S1) end;
+into_all method code_regex B0CC replaceall_matched begin B1B2(B0C0,B0C1) end;
+into_all method code_regex B0DC replaceall_matched begin B1B2(B0D0,B0D1) end;
+into_all method code_regex B0DV replaceall_matched begin B1B2(B0D2,B0D3) end;
+
+into_all method code_regex B1VL replaceall_matched begin B1B2(B1V0,B1V1) end;
+into_all method code_regex B1RC replaceall_matched begin B1B2(B1R0,B1R1) end;
+into_all method code_regex B1FC replaceall_matched begin B1B2(B1F0,B1F1) end;
+into_all method code_regex B1MD replaceall_matched begin B1B2(B1M0,B1M1) end;
+into_all method code_regex B1ST replaceall_matched begin B1B2(B1S0,B1S1) end;
+into_all method code_regex B1DC replaceall_matched begin B1B2(B1D0,B1D1) end;
+into_all method code_regex B1DV replaceall_matched begin B1B2(B1D2,B1D3) end;
+
+
