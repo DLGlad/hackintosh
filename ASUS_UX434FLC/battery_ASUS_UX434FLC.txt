@@ -44,6 +44,7 @@ into_all method code_regex B1RC replaceall_matched begin B1B2(B1R0,B1R1) end;
 into_all method code_regex B1FC replaceall_matched begin B1B2(B1F0,B1F1) end;
 into_all method code_regex B1MD replaceall_matched begin B1B2(B1M0,B1M1) end;
 into_all method code_regex B1ST replaceall_matched begin B1B2(B1S0,B1S1) end;
+into_all method code_regex B1CC replaceall_matched begin B1B2(B1C0,B1C1) end;
 into_all method code_regex B1DC replaceall_matched begin B1B2(B1D0,B1D1) end;
 into_all method code_regex B1DV replaceall_matched begin B1B2(B1D2,B1D3) end;
 
